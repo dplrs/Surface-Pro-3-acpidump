@@ -1,11 +1,11 @@
 /*
  * Intel ACPI Component Architecture
- * AML/ASL+ Disassembler version 20200110 (64-bit version)
- * Copyright (c) 2000 - 2020 Intel Corporation
+ * AML/ASL+ Disassembler version 20190509 (64-bit version)
+ * Copyright (c) 2000 - 2019 Intel Corporation
  * 
  * Disassembling to symbolic ASL+ operators
  *
- * Disassembly of ssdt2.dat, Sun Jan 26 21:11:00 2020
+ * Disassembly of ssdt2.dat, Sat Oct 10 17:24:16 2020
  *
  * Original Table Header:
  *     Signature        "SSDT"
@@ -20,32 +20,53 @@
  */
 DefinitionBlock ("", "SSDT", 1, "OEMC", "Ult0Rtd3", 0x00001000)
 {
+    /*
+     * iASL Warning: There were 2 external control methods found during
+     * disassembly, but only 0 were resolved (2 unresolved). Additional
+     * ACPI tables may be required to properly disassemble the code. This
+     * resulting disassembler output file may not compile because the
+     * disassembler did not know how many arguments to assign to the
+     * unresolved methods. Note: SSDTs can be dynamically loaded at
+     * runtime and may or may not be available via the host OS.
+     *
+     * In addition, the -fe option can be used to specify a file containing
+     * control method external declarations with the associated method
+     * argument counts. Each line of the file must be of the form:
+     *     External (<method pathname>, MethodObj, <argument count>)
+     * Invocation:
+     *     iasl -fe refs.txt -d dsdt.aml
+     *
+     * The following methods were unresolved and many not compile properly
+     * because the disassembler had to guess at the number of arguments
+     * required for each:
+     */
     External (_SB_.PCI0, DeviceObj)
     External (_SB_.PCI0.HDEF, DeviceObj)
     External (_SB_.PCI0.RP01.WIFI, DeviceObj)
     External (_SB_.PCI0.SAT0, DeviceObj)
     External (_SB_.PCI0.XHC_, DeviceObj)
-    External (_SB_.PCI0.XHC_.MEMB, FieldUnitObj)
     External (_SB_.PCI0.XHC_.RHUB, DeviceObj)
     External (_SB_.PEPD, UnknownObj)
-    External (_SB_.RDGP, MethodObj)    // 1 Arguments
-    External (_SB_.WTGP, MethodObj)    // 2 Arguments
-    External (ADBG, MethodObj)    // 1 Arguments
-    External (BID_, FieldUnitObj)
-    External (BSPC, IntObj)
-    External (BWT1, IntObj)
-    External (GO27, FieldUnitObj)
-    External (GS27, FieldUnitObj)
-    External (HDAD, FieldUnitObj)
-    External (RTD3, FieldUnitObj)
-    External (S0ID, FieldUnitObj)
-    External (VRSD, FieldUnitObj)
+    External (_SB_.RDGP, UnknownObj)
+    External (_SB_.WTGP, MethodObj)    // Warning: Unknown method, guessing 2 arguments
+    External (ADBG, MethodObj)    // Warning: Unknown method, guessing 1 arguments
+    External (BID_, UnknownObj)
+    External (BSPC, UnknownObj)
+    External (BWT1, UnknownObj)
+    External (GO27, UnknownObj)
+    External (GS27, UnknownObj)
+    External (HDAD, UnknownObj)
+    External (MEMB, UnknownObj)
+    External (RTD3, UnknownObj)
+    External (S0ID, UnknownObj)
+    External (VRSD, UnknownObj)
 
     Name (LONT, Zero)
     Method (SGON, 2, Serialized)
     {
-        If ((\_SB.RDGP (Arg0) != Arg1))
+        If ((\_SB.RDGP != Arg0))
         {
+            Arg1
             Local0 = ((Timer - \LONT) / 0x2710)
             If ((Local0 < \VRSD))
             {

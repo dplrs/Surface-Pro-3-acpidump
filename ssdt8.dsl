@@ -1,245 +1,87 @@
 /*
  * Intel ACPI Component Architecture
- * AML/ASL+ Disassembler version 20200110 (64-bit version)
- * Copyright (c) 2000 - 2020 Intel Corporation
+ * AML/ASL+ Disassembler version 20190509 (64-bit version)
+ * Copyright (c) 2000 - 2019 Intel Corporation
  * 
  * Disassembling to symbolic ASL+ operators
  *
- * Disassembly of ssdt8.dat, Sun Jan 26 21:11:00 2020
+ * Disassembly of ssdt8.dat, Sat Oct 10 17:24:48 2020
  *
  * Original Table Header:
  *     Signature        "SSDT"
- *     Length           0x000003D3 (979)
+ *     Length           0x00000119 (281)
  *     Revision         0x01
- *     Checksum         0xAF
+ *     Checksum         0xEB
  *     OEM ID           "PmRef"
- *     OEM Table ID     "Cpu0Cst"
- *     OEM Revision     0x00003001 (12289)
+ *     OEM Table ID     "ApCst"
+ *     OEM Revision     0x00003000 (12288)
  *     Compiler ID      "INTL"
  *     Compiler Version 0x20120913 (538052883)
  */
-DefinitionBlock ("", "SSDT", 1, "PmRef", "Cpu0Cst", 0x00003001)
+DefinitionBlock ("", "SSDT", 1, "PmRef", "ApCst", 0x00003000)
 {
-    External (_PR_.CPU0, DeviceObj)
-    External (C3LT, IntObj)
-    External (C3MW, IntObj)
-    External (C6LT, IntObj)
-    External (C6MW, IntObj)
-    External (C7LT, IntObj)
-    External (C7MW, IntObj)
-    External (CDLT, IntObj)
-    External (CDLV, IntObj)
-    External (CDMW, IntObj)
-    External (CDPW, IntObj)
-    External (CFGD, UnknownObj)
-    External (PDC0, UnknownObj)
+    External (_PR_.CPU0._CST, IntObj)
+    External (_PR_.CPU1, DeviceObj)
+    External (_PR_.CPU2, DeviceObj)
+    External (_PR_.CPU3, DeviceObj)
+    External (_PR_.CPU4, DeviceObj)
+    External (_PR_.CPU5, DeviceObj)
+    External (_PR_.CPU6, DeviceObj)
+    External (_PR_.CPU7, DeviceObj)
 
-    Scope (\_PR.CPU0)
+    Scope (\_PR.CPU1)
     {
-        Name (C1TM, Package (0x04)
+        Method (_CST, 0, NotSerialized)  // _CST: C-States
         {
-            ResourceTemplate ()
-            {
-                Register (FFixedHW, 
-                    0x00,               // Bit Width
-                    0x00,               // Bit Offset
-                    0x0000000000000000, // Address
-                    ,)
-            }, 
+            Return (\_PR.CPU0._CST) /* External reference */
+        }
+    }
 
-            One, 
-            One, 
-            0x03E8
-        })
-        Name (C3TM, Package (0x04)
+    Scope (\_PR.CPU2)
+    {
+        Method (_CST, 0, NotSerialized)  // _CST: C-States
         {
-            ResourceTemplate ()
-            {
-                Register (SystemIO, 
-                    0x08,               // Bit Width
-                    0x00,               // Bit Offset
-                    0x0000000000001814, // Address
-                    ,)
-            }, 
+            Return (\_PR.CPU0._CST) /* External reference */
+        }
+    }
 
-            0x02, 
-            Zero, 
-            0x01F4
-        })
-        Name (C6TM, Package (0x04)
+    Scope (\_PR.CPU3)
+    {
+        Method (_CST, 0, NotSerialized)  // _CST: C-States
         {
-            ResourceTemplate ()
-            {
-                Register (SystemIO, 
-                    0x08,               // Bit Width
-                    0x00,               // Bit Offset
-                    0x0000000000001815, // Address
-                    ,)
-            }, 
+            Return (\_PR.CPU0._CST) /* External reference */
+        }
+    }
 
-            0x02, 
-            Zero, 
-            0x015E
-        })
-        Name (C7TM, Package (0x04)
+    Scope (\_PR.CPU4)
+    {
+        Method (_CST, 0, NotSerialized)  // _CST: C-States
         {
-            ResourceTemplate ()
-            {
-                Register (SystemIO, 
-                    0x08,               // Bit Width
-                    0x00,               // Bit Offset
-                    0x0000000000001816, // Address
-                    ,)
-            }, 
+            Return (\_PR.CPU0._CST) /* External reference */
+        }
+    }
 
-            0x02, 
-            Zero, 
-            0xC8
-        })
-        Name (CDTM, Package (0x04)
+    Scope (\_PR.CPU5)
+    {
+        Method (_CST, 0, NotSerialized)  // _CST: C-States
         {
-            ResourceTemplate ()
-            {
-                Register (SystemIO, 
-                    0x08,               // Bit Width
-                    0x00,               // Bit Offset
-                    0x0000000000001816, // Address
-                    ,)
-            }, 
+            Return (\_PR.CPU0._CST) /* External reference */
+        }
+    }
 
-            0x03, 
-            Zero, 
-            Zero
-        })
-        Name (MWES, ResourceTemplate ()
+    Scope (\_PR.CPU6)
+    {
+        Method (_CST, 0, NotSerialized)  // _CST: C-States
         {
-            Register (FFixedHW, 
-                0x01,               // Bit Width
-                0x02,               // Bit Offset
-                0x0000000000000000, // Address
-                0x01,               // Access Size
-                )
-        })
-        Name (AC2V, Zero)
-        Name (AC3V, Zero)
-        Name (C3ST, Package (0x04)
+            Return (\_PR.CPU0._CST) /* External reference */
+        }
+    }
+
+    Scope (\_PR.CPU7)
+    {
+        Method (_CST, 0, NotSerialized)  // _CST: C-States
         {
-            0x03, 
-            Package (0x00){}, 
-            Package (0x00){}, 
-            Package (0x00){}
-        })
-        Name (C2ST, Package (0x03)
-        {
-            0x02, 
-            Package (0x00){}, 
-            Package (0x00){}
-        })
-        Name (C1ST, Package (0x02)
-        {
-            One, 
-            Package (0x00){}
-        })
-        Name (CSTF, Zero)
-        Name (GEAR, Zero)
-        Method (_CST, 0, Serialized)  // _CST: C-States
-        {
-            If (!CSTF)
-            {
-                C3TM [0x02] = C3LT /* External reference */
-                C6TM [0x02] = C6LT /* External reference */
-                C7TM [0x02] = C7LT /* External reference */
-                CDTM [0x02] = CDLT /* External reference */
-                CDTM [0x03] = CDPW /* External reference */
-                DerefOf (CDTM [Zero]) [0x07] = CDLV /* External reference */
-                If (((CFGD & 0x0800) && (PDC0 & 0x0200)))
-                {
-                    C1TM [Zero] = MWES /* \_PR_.CPU0.MWES */
-                    C3TM [Zero] = MWES /* \_PR_.CPU0.MWES */
-                    C6TM [Zero] = MWES /* \_PR_.CPU0.MWES */
-                    C7TM [Zero] = MWES /* \_PR_.CPU0.MWES */
-                    CDTM [Zero] = MWES /* \_PR_.CPU0.MWES */
-                    DerefOf (C3TM [Zero]) [0x07] = C3MW /* External reference */
-                    DerefOf (C6TM [Zero]) [0x07] = C6MW /* External reference */
-                    DerefOf (C7TM [Zero]) [0x07] = C7MW /* External reference */
-                    DerefOf (CDTM [Zero]) [0x07] = CDMW /* External reference */
-                }
-                ElseIf (((CFGD & 0x0800) && (PDC0 & 0x0100)))
-                {
-                    C1TM [Zero] = MWES /* \_PR_.CPU0.MWES */
-                }
-
-                CSTF = Ones
-            }
-
-            AC2V = Zero
-            AC3V = Zero
-            C3ST [One] = C1TM /* \_PR_.CPU0.C1TM */
-            If ((CFGD & 0x20))
-            {
-                C3ST [0x02] = C7TM /* \_PR_.CPU0.C7TM */
-                AC2V = Ones
-            }
-            ElseIf ((CFGD & 0x10))
-            {
-                C3ST [0x02] = C6TM /* \_PR_.CPU0.C6TM */
-                AC2V = Ones
-            }
-            ElseIf ((CFGD & 0x08))
-            {
-                C3ST [0x02] = C3TM /* \_PR_.CPU0.C3TM */
-                AC2V = Ones
-            }
-
-            If ((CFGD & 0x4000))
-            {
-                C3ST [0x03] = CDTM /* \_PR_.CPU0.CDTM */
-                AC3V = Ones
-            }
-
-            If ((GEAR == One))
-            {
-                If ((CFGD & 0x08))
-                {
-                    C3ST [0x02] = C3TM /* \_PR_.CPU0.C3TM */
-                    AC2V = Ones
-                    AC3V = Zero
-                }
-                Else
-                {
-                    AC2V = Zero
-                    AC3V = Zero
-                }
-            }
-
-            If ((GEAR == 0x02))
-            {
-                AC2V = Zero
-                AC3V = Zero
-            }
-
-            If ((AC2V && AC3V))
-            {
-                Return (C3ST) /* \_PR_.CPU0.C3ST */
-            }
-            ElseIf (AC2V)
-            {
-                C2ST [One] = DerefOf (C3ST [One])
-                C2ST [0x02] = DerefOf (C3ST [0x02])
-                Return (C2ST) /* \_PR_.CPU0.C2ST */
-            }
-            ElseIf (AC3V)
-            {
-                C2ST [One] = DerefOf (C3ST [One])
-                C2ST [0x02] = DerefOf (C3ST [0x03])
-                DerefOf (C2ST [0x02]) [One] = 0x02
-                Return (C2ST) /* \_PR_.CPU0.C2ST */
-            }
-            Else
-            {
-                C1ST [One] = DerefOf (C3ST [One])
-                Return (C1ST) /* \_PR_.CPU0.C1ST */
-            }
+            Return (\_PR.CPU0._CST) /* External reference */
         }
     }
 }
